@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" >Check Split</string>
+    <string name="action_settings" >Settings</string>
+
+    <string name="main_amount_per_person" >Amount per person:</string>
+    <string name="main_check_total" >Check total:</string>
+    <string name="main_check_total_hint">Enter the check total to split</string>
+    <string name="main_person_count" ># of persons:</string>
+    <string name="main_person_count_hint">Number of persons for splitting</string>
+    <string name="main_discount">Discount:</string>
+    <string name="main_tip">Tip:</string>
+
+    <string-array name="apply_tip_options">
+        <item>before discount</item>
+        <item>after discount</item>
+    </string-array>
+</resources>

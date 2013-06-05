@@ -1,0 +1,243 @@
+<RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:baselineAligned="false"
+        android:background="@color/app_background">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:baselineAligned="false"
+            android:gravity="top"
+            android:layout_above="@+id/main_lay_result"
+            android:id="@+id/main_lay_body">
+
+        <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:stretchColumns="1">
+
+            <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/title_gradient">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/main_img_title_icon"
+                        android:layout_column="0"
+                        android:src="@drawable/ic_launcher"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:id="@+id/main_lbl_title"
+                        android:layout_column="1"
+                        android:textSize="26sp"
+                        android:textColor="@color/main_title_text"
+                        android:layout_gravity="center_vertical"/>
+            </TableRow>
+        </TableLayout>
+
+        <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scrollView"
+                android:layout_gravity="center"
+                android:padding="4dp">
+
+            <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="0"
+                    android:stretchColumns="1">
+
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/main_check_total"
+                            android:id="@+id/main_lbl_check_total"
+                            android:paddingRight="4dp"
+                            android:gravity="center_vertical|right"/>
+
+                    <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/main_txt_check_total"
+                            android:layout_column="1"
+                            android:gravity="right"
+                            android:hint="$ 0.00"
+                            android:layout_span="2"/>
+                </TableRow>
+
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/main_discount"
+                            android:id="@+id/main_lbl_discount"
+                            android:gravity="center_vertical|right"/>
+
+                    <SeekBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/main_skb_discount"
+                            android:max="100"
+                            android:padding="10dp"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="0%"
+                            android:id="@+id/main_lbl_discount_symbol"
+                            android:gravity="center_vertical|right"
+                            android:width="36dp"
+                            android:singleLine="true"/>
+
+                </TableRow>
+
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/main_person_count"
+                            android:id="@+id/main_lbl_person_count"
+                            android:paddingRight="4dp"
+                            android:gravity="center_vertical|right"/>
+
+                    <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/main_txt_person_count"
+                            android:gravity="right"
+                            android:layout_span="2"/>
+
+                </TableRow>
+
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/main_tip"
+                            android:id="@+id/main_lbl_tip"
+                            android:gravity="center_vertical|right"/>
+
+                    <SeekBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/main_skb_tip"
+                            android:max="100"
+                            android:padding="10dp"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="0%"
+                            android:id="@+id/main_lbl_tip_symbol"
+                            android:gravity="center_vertical|right"
+                            android:width="36dp"
+                            android:singleLine="true"/>
+                </TableRow>
+
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="Apply tip:"
+                            android:id="@+id/main_lbl_apply_tip"
+                            android:gravity="center_vertical|right"/>
+
+                    <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/main_dpd_apply_tip"
+                            android:clickable="true"
+                            android:entries="@array/apply_tip_options"
+                            android:layout_span="2"/>
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/result_gradient"
+            android:id="@+id/main_lay_result">
+
+        <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:stretchColumns="1">
+
+            <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_amount_per_person"
+                        android:id="@+id/main_lbl_amount_per_person"
+                        android:layout_alignParentBottom="true"
+                        android:textColor="@color/main_result_text"
+                        android:linksClickable="false"
+                        android:singleLine="true"
+                        android:textSize="18sp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:paddingRight="10dp"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/main_lbl_result"
+                        android:layout_column="1"
+                        android:textStyle="bold"
+                        android:textColor="@color/main_result_text"
+                        android:textSize="18sp"
+                        android:singleLine="true"
+                        android:gravity="right"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="4dp"
+                        android:layout_gravity="right"
+                        android:text="$ 0.00"/>
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
