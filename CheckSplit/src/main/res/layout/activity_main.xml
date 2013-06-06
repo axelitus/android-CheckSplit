@@ -275,12 +275,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@drawable/result_gradient"
-            android:id="@+id/main_lay_result">
+            android:id="@+id/main_lay_result"
+            android:baselineAligned="false">
 
         <TableLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:stretchColumns="1">
+                android:layout_height="wrap_content"
+                android:stretchColumns="1"
+                android:textAlignment="gravity"
+                android:shrinkColumns="0"
+                >
 
             <TableRow
                     android:layout_width="fill_parent"
@@ -291,40 +295,41 @@
                         android:layout_height="wrap_content"
                         android:text="@string/main_amount_per_split"
                         android:id="@+id/main_lbl_amount_per_person"
-                        android:textColor="@color/main_result_text"
-                        android:linksClickable="false"
-                        android:singleLine="true"
+                        android:textColor="@color/main_amount_per_split_text"
                         android:textSize="18sp"
                         android:paddingLeft="10dp"
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:paddingRight="10dp"
-                        android:layout_column="0"/>
+                        android:layout_column="0"
+                        android:textStyle="bold"
+                        />
 
                 <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/main_lbl_amount_per_person_value"
                         android:layout_column="1"
                         android:textStyle="bold"
-                        android:textColor="@color/main_result_text"
+                        android:textColor="@color/main_amount_per_split_text"
                         android:textSize="18sp"
-                        android:singleLine="true"
-                        android:gravity="right"
                         android:paddingLeft="10dp"
                         android:paddingTop="4dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="4dp"
-                        android:layout_gravity="right"
-                        android:text="@string/main_amount_per_split_default_value"/>
+                        android:text="@string/main_amount_per_split_default_value"
+                        android:gravity="right"
+                        android:singleLine="false"
+                        android:textIsSelectable="true"/>
+
             </TableRow>
 
             <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:minHeight="1dp"
                     android:background="@color/main_result_line"
-                    >
+                    android:minHeight="1dp">
+
             </TableRow>
 
             <TableRow
@@ -333,37 +338,36 @@
 
                 <TextView
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
+                        android:layout_height="wrap_content"
                         android:text="@string/main_total_to_pay"
                         android:id="@+id/main_lbl_total_to_pay"
-                        android:singleLine="true"
+                        android:textColor="@color/main_total_to_pay_text"
+                        android:textSize="14sp"
                         android:paddingLeft="10dp"
                         android:paddingTop="4dp"
-                        android:paddingRight="10dp"
                         android:paddingBottom="4dp"
-                        android:textColor="@color/main_result_total_text"
-                        android:layout_gravity="center_vertical"
+                        android:paddingRight="10dp"
                         android:layout_column="0"
-                        android:textSize="14sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        />
 
                 <TextView
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:text="@string/main_total_to_pay_default_value"
+                        android:layout_height="wrap_content"
                         android:id="@+id/main_lbl_total_to_pay_value"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical|right"
-                        android:textColor="@color/main_result_total_text"
                         android:layout_column="1"
+                        android:textColor="@color/main_total_to_pay_text"
+                        android:textSize="14sp"
                         android:paddingLeft="10dp"
                         android:paddingTop="4dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="4dp"
-                        android:singleLine="true"
-                        android:textSize="14sp"
-                        android:textStyle="bold"/>
+                        android:text="@string/main_total_to_pay_default_value"
+                        android:gravity="center_vertical|right"
+                        android:textStyle="bold"
+                        android:textIsSelectable="true"/>
             </TableRow>
+
         </TableLayout>
 
     </LinearLayout>

@@ -8,13 +8,13 @@
     <string name="main_amount_per_split" >Amount per split:</string>
     <string name="main_check_total" >Check total:</string>
     <string name="main_check_total_hint">check total needed...</string>
-    <string name="main_split_count" ># of splits:</string>
-    <string name="main_split_count_hint"># of splits needed...</string>
+    <string name="main_split_count" >Number of splits:</string>
+    <string name="main_split_count_hint">Number of splits needed...</string>
     <string name="main_discount">Discount:</string>
     <string name="main_tip">Tip:</string>
+    <string name="main_amount_per_split_default_value">$ 0.00</string>
     <string name="main_total_to_pay">Total to pay:</string>
     <string name="main_total_to_pay_default_value">$ 0.00</string>
-    <string name="main_amount_per_split_default_value">$ 0.00</string>
     <string name="main_split_count_btn_plus">+</string>
     <string name="main_split_count_btn_minus">-</string>
     <string name="main_discount_default_value">0%</string>

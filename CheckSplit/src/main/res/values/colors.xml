@@ -4,8 +4,8 @@
     <color name="text_color">#f333</color>
 
     <color name="main_title_text">#ffe0e0e0</color>
-    <color name="main_result_text">#ffe0e0e0</color>
-    <color name="main_result_total_text">#66e0e0e0</color>
+    <color name="main_amount_per_split_text">#ffe0e0e0</color>
+    <color name="main_total_to_pay_text">#66e0e0e0</color>
 
-    <color name="main_result_line">#66e0e0e0</color>
+    <color name="main_result_line">#33e0e0e0</color>
 </resources>
