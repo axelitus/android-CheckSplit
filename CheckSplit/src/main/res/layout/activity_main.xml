@@ -95,8 +95,8 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="@string/main_person_count"
-                            android:id="@+id/main_lbl_person_count"
+                            android:text="@string/main_split_count"
+                            android:id="@+id/main_lbl_split_count"
                             android:paddingRight="4dp"
                             android:gravity="center_vertical|right"
                             android:layout_gravity="center_vertical"/>
@@ -104,8 +104,8 @@
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/main_person_count_btn_minus"
-                            android:id="@+id/main_btn_person_minus"
+                            android:text="@string/main_split_count_btn_minus"
+                            android:id="@+id/main_btn_split_minus"
                             android:minWidth="36dp"
                             android:layout_gravity="center_vertical"
                             android:layout_span="1"
@@ -117,20 +117,20 @@
                             android:layout_height="match_parent"
                             android:inputType="number"
                             android:ems="10"
-                            android:id="@+id/main_txt_person_count"
+                            android:id="@+id/main_txt_split_count"
                             android:gravity="right"
                             android:layout_gravity="center_vertical"
                             android:digits="0123456789"
                             android:numeric="integer"
-                            android:hint="@string/main_person_count_hint"
-                            android:text="@string/main_person_count_default_value"
+                            android:hint="@string/main_split_count_hint"
+                            android:text="@string/main_split_count_default_value"
                             android:layout_span="2"/>
 
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/main_person_count_btn_plus"
-                            android:id="@+id/main_btn_person_plus"
+                            android:text="@string/main_split_count_btn_plus"
+                            android:id="@+id/main_btn_split_plus"
                             android:layout_gravity="center_vertical"
                             android:minWidth="36dp"
                             android:width="36dp"/>
@@ -175,7 +175,7 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/main_already_payed"
+                            android:text="@string/main_already_paid"
                             android:id="@+id/main_lbl_already_paid"
                             android:gravity="center_vertical|right"
                             android:layout_gravity="center_vertical"/>
@@ -189,7 +189,7 @@
                             android:layout_span="4"
                             android:gravity="right"
                             android:digits="0123456789."
-                            android:hint="@string/main_already_payed_hint"
+                            android:hint="@string/main_already_paid_hint"
                             android:numeric="decimal"/>
                 </TableRow>
 
@@ -231,16 +231,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:text="@string/main_calculate_tip"
-                            android:id="@+id/main_lbl_apply_tip"
+                            android:id="@+id/main_lbl_calculate_tip"
                             android:gravity="center_vertical|right"
                             android:layout_gravity="center_vertical"/>
 
                     <Spinner
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/main_dpd_apply_tip"
+                            android:id="@+id/main_dpd_calculate_tip"
                             android:clickable="true"
-                            android:entries="@array/apply_tip_options"
+                            android:entries="@array/calculate_tip_options"
                             android:layout_span="4"/>
                 </TableRow>
 
@@ -289,7 +289,7 @@
                 <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/main_amount_per_person"
+                        android:text="@string/main_amount_per_split"
                         android:id="@+id/main_lbl_amount_per_person"
                         android:textColor="@color/main_result_text"
                         android:linksClickable="false"
@@ -316,7 +316,7 @@
                         android:paddingRight="10dp"
                         android:paddingBottom="4dp"
                         android:layout_gravity="right"
-                        android:text="@string/main_amount_per_person_default_value"/>
+                        android:text="@string/main_amount_per_split_default_value"/>
             </TableRow>
 
             <TableRow
