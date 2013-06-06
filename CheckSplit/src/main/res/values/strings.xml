@@ -13,7 +13,14 @@
     <string name="main_tip">Tip:</string>
 
     <string-array name="apply_tip_options">
-        <item>before discount</item>
-        <item>after discount</item>
+        <item>before discounts</item>
+        <item>after discounts</item>
+    </string-array>
+
+    <string-array name="round_to_options">
+        <item>none</item>
+        <item>one unit</item>
+        <item>five units</item>
+        <item>ten units</item>
     </string-array>
 </resources>
