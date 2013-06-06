@@ -68,18 +68,67 @@
                             android:text="@string/main_check_total"
                             android:id="@+id/main_lbl_check_total"
                             android:paddingRight="4dp"
-                            android:gravity="center_vertical|right"/>
+                            android:gravity="center_vertical|right"
+                            android:layout_gravity="center_vertical"/>
 
                     <EditText
-                            android:layout_width="wrap_content"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/main_txt_check_total"
                             android:layout_column="1"
                             android:gravity="right"
-                            android:hint="$ 0.00"
-                            android:layout_span="2"/>
+                            android:hint="check total needed..."
+                            android:layout_span="4"
+                            android:layout_gravity="center_vertical"
+                            android:digits="0123456789."
+                            android:numeric="decimal"
+                            />
+                </TableRow>
+
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="@string/main_person_count"
+                            android:id="@+id/main_lbl_person_count"
+                            android:paddingRight="4dp"
+                            android:gravity="center_vertical|right"
+                            android:layout_gravity="center_vertical"/>
+
+                    <EditText
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:id="@+id/main_txt_person_count"
+                            android:gravity="right"
+                            android:layout_span="2"
+                            android:layout_gravity="center_vertical"
+                            android:digits="0123456789"
+                            android:hint="# of persons needed..."
+                            android:numeric="integer"
+                            />
+
+                    <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:id="@+id/main_btn_person_plus"
+                            android:layout_gravity="center_vertical"
+                            android:minWidth="36dp"/>
+
+                    <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:id="@+id/main_btn_person_minus"
+                            android:minWidth="36dp"/>
+
                 </TableRow>
 
                 <TableRow
@@ -91,14 +140,16 @@
                             android:layout_height="fill_parent"
                             android:text="@string/main_discount"
                             android:id="@+id/main_lbl_discount"
-                            android:gravity="center_vertical|right"/>
+                            android:gravity="center_vertical|right"
+                            android:layout_gravity="center_vertical"/>
 
                     <SeekBar
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/main_skb_discount"
                             android:max="100"
-                            android:padding="10dp"/>
+                            android:padding="10dp"
+                            android:layout_span="3"/>
 
                     <TextView
                             android:layout_width="wrap_content"
@@ -120,7 +171,8 @@
                             android:layout_height="wrap_content"
                             android:text="Already payed:"
                             android:id="@+id/main_lbl_already_payed"
-                            android:gravity="center_vertical|right"/>
+                            android:gravity="center_vertical|right"
+                            android:layout_gravity="center_vertical"/>
 
                     <EditText
                             android:layout_width="wrap_content"
@@ -128,31 +180,11 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/main_txt_already_payed"
-                            android:layout_span="2"
-                            android:gravity="right"/>
-                </TableRow>
-
-                <TableRow
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent">
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:text="@string/main_person_count"
-                            android:id="@+id/main_lbl_person_count"
-                            android:paddingRight="4dp"
-                            android:gravity="center_vertical|right"/>
-
-                    <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:ems="10"
-                            android:id="@+id/main_txt_person_count"
+                            android:layout_span="4"
                             android:gravity="right"
-                            android:layout_span="2"/>
-
+                            android:digits="0123456789."
+                            android:hint="$ 0.00"
+                            android:numeric="decimal"/>
                 </TableRow>
 
                 <TableRow
@@ -164,14 +196,16 @@
                             android:layout_height="fill_parent"
                             android:text="@string/main_tip"
                             android:id="@+id/main_lbl_tip"
-                            android:gravity="center_vertical|right"/>
+                            android:gravity="center_vertical|right"
+                            android:layout_gravity="center_vertical"/>
 
                     <SeekBar
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/main_skb_tip"
                             android:max="100"
-                            android:padding="10dp"/>
+                            android:padding="10dp"
+                            android:layout_span="3"/>
 
                     <TextView
                             android:layout_width="wrap_content"
@@ -190,9 +224,10 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="Apply tip:"
+                            android:text="Calculate tip:"
                             android:id="@+id/main_lbl_apply_tip"
-                            android:gravity="center_vertical|right"/>
+                            android:gravity="center_vertical|right"
+                            android:layout_gravity="center_vertical"/>
 
                     <Spinner
                             android:layout_width="fill_parent"
@@ -200,7 +235,7 @@
                             android:id="@+id/main_dpd_apply_tip"
                             android:clickable="true"
                             android:entries="@array/apply_tip_options"
-                            android:layout_span="2"/>
+                            android:layout_span="4"/>
                 </TableRow>
 
                 <TableRow
@@ -212,13 +247,14 @@
                             android:layout_height="fill_parent"
                             android:text="Round to:"
                             android:id="@+id/main_lbl_round_to"
-                            android:gravity="center_vertical|right"/>
+                            android:gravity="center_vertical|right"
+                            android:layout_gravity="center_vertical"/>
 
                     <Spinner
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/main_dpd_round_to"
-                            android:layout_span="2"
+                            android:layout_span="4"
                             android:entries="@array/round_to_options"/>
                 </TableRow>
 
@@ -249,7 +285,6 @@
                         android:layout_height="wrap_content"
                         android:text="@string/main_amount_per_person"
                         android:id="@+id/main_lbl_amount_per_person"
-                        android:layout_alignParentBottom="true"
                         android:textColor="@color/main_result_text"
                         android:linksClickable="false"
                         android:singleLine="true"
@@ -257,7 +292,8 @@
                         android:paddingLeft="10dp"
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
-                        android:paddingRight="10dp"/>
+                        android:paddingRight="10dp"
+                        android:layout_column="0"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -275,6 +311,51 @@
                         android:paddingBottom="4dp"
                         android:layout_gravity="right"
                         android:text="$ 0.00"/>
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:minHeight="1px"
+                    android:background="@color/main_result_line">
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:text="Total to pay:"
+                        android:id="@+id/main_lbl_total_to_pay"
+                        android:singleLine="true"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="4dp"
+                        android:textColor="@color/main_result_total_text"
+                        android:layout_gravity="center_vertical"
+                        android:layout_column="0"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:text="$ 0.00"
+                        android:id="@+id/textView"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical|right"
+                        android:textColor="@color/main_result_total_text"
+                        android:layout_column="1"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="4dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
             </TableRow>
         </TableLayout>
 

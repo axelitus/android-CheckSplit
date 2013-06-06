@@ -5,4 +5,7 @@
 
     <color name="main_title_text">#ffe0e0e0</color>
     <color name="main_result_text">#ffe0e0e0</color>
+    <color name="main_result_total_text">#66e0e0e0</color>
+
+    <color name="main_result_line">#99e0e0e0</color>
 </resources>
