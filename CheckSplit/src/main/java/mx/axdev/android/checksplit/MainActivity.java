@@ -24,13 +24,13 @@ public class MainActivity extends Activity {
 
     // discount
     protected SeekBar skb_discount;
-    protected TextView lbl_discount_symbol;
+    protected TextView lbl_discount_value;
     protected float discount = 0;       // 0-1 percentage
 
     // already payed
-    protected EditText txt_already_payed;
-    protected float already_payed = 0;
-    protected boolean already_payed_formatting = false;
+    protected EditText txt_already_paid;
+    protected float already_paid = 0;
+    protected boolean already_paid_formatting = false;
 
     // person_count
     protected EditText txt_person_count;
@@ -38,15 +38,15 @@ public class MainActivity extends Activity {
 
     // tip
     protected SeekBar skb_tip;
-    protected TextView lbl_tip_symbol;
+    protected TextView lbl_tip_value;
     protected float tip = 0;            // 0-1 percentage
 
     // apply tip
     protected Spinner dpd_tip;
     protected int dpd_tip_selected = TIP_BEFORE_DISCOUNTS;
 
-    // result
-    protected TextView lbl_result;
+    // amount per person
+    protected TextView lbl_amount_per_person_value;
     protected float sub_total = 0;
     protected float result = 0;
 
@@ -93,13 +93,13 @@ public class MainActivity extends Activity {
     protected void init_components() {
         this.txt_check_total = (EditText) findViewById(R.id.main_txt_check_total);
         this.skb_discount = (SeekBar) findViewById(R.id.main_skb_discount);
-        this.lbl_discount_symbol = (TextView) findViewById(R.id.main_lbl_discount_symbol);
-        this.txt_already_payed = (EditText) findViewById(R.id.main_txt_already_payed);
+        this.lbl_discount_value = (TextView) findViewById(R.id.main_lbl_discount_value);
+        this.txt_already_paid = (EditText) findViewById(R.id.main_txt_already_paid);
         this.txt_person_count = (EditText) findViewById(R.id.main_txt_person_count);
         this.skb_tip = (SeekBar) findViewById(R.id.main_skb_tip);
         this.dpd_tip = (Spinner) findViewById(R.id.main_dpd_apply_tip);
-        this.lbl_tip_symbol = (TextView) findViewById(R.id.main_lbl_tip_symbol);
-        this.lbl_result = (TextView) findViewById(R.id.main_lbl_result);
+        this.lbl_tip_value = (TextView) findViewById(R.id.main_lbl_tip_value);
+        this.lbl_amount_per_person_value = (TextView) findViewById(R.id.main_lbl_amount_per_person_value);
         this.dpd_round_to = (Spinner) findViewById(R.id.main_dpd_round_to);
     }
 
@@ -183,7 +183,7 @@ public class MainActivity extends Activity {
         this.skb_discount.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                lbl_discount_symbol.setText(Integer.toString(i) + "%");
+                lbl_discount_value.setText(Integer.toString(i) + "%");
                 discount = i / 100f;
                 calculate();
             }
@@ -199,8 +199,8 @@ public class MainActivity extends Activity {
             }
         });
 
-        // Set event listeners for txt_already_payed
-        this.txt_already_payed.addTextChangedListener(new TextWatcher() {
+        // Set event listeners for txt_already_paid
+        this.txt_already_paid.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
@@ -213,34 +213,34 @@ public class MainActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(!already_payed_formatting) {
+                if(!already_paid_formatting) {
                     try {
-                        already_payed = Float.parseFloat(editable.toString());
+                        already_paid = Float.parseFloat(editable.toString());
                     } catch(Exception ex) {
-                        already_payed = 0;
+                        already_paid = 0;
                     }
                     calculate();
                 }
 
-                already_payed_formatting = false;
+                already_paid_formatting = false;
             }
         });
 
-        this.txt_already_payed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        this.txt_already_paid.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                already_payed_formatting = true;
-                if(hasFocus) {
-                    if(already_payed > 0) {
-                        txt_already_payed.setText(decimal_formatter.format(already_payed));
+                already_paid_formatting = true;
+                if (hasFocus) {
+                    if (already_paid > 0) {
+                        txt_already_paid.setText(decimal_formatter.format(already_paid));
                     } else {
-                        txt_already_payed.setText("");
+                        txt_already_paid.setText("");
                     }
                 } else {
-                    if(check_total > 0) {
-                        txt_already_payed.setText(currency_formatter.format(already_payed));
+                    if (check_total > 0) {
+                        txt_already_paid.setText(currency_formatter.format(already_paid));
                     } else {
-                        txt_already_payed.setText("");
+                        txt_already_paid.setText("");
                     }
                 }
             }
@@ -273,7 +273,7 @@ public class MainActivity extends Activity {
         this.skb_tip.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                lbl_tip_symbol.setText(Integer.toString(i) + "%");
+                lbl_tip_value.setText(Integer.toString(i) + "%");
                 tip = i / 100f;
                 calculate();
             }
@@ -336,7 +336,7 @@ public class MainActivity extends Activity {
 
         this.calc_rounding();
 
-        this.lbl_result.setText(this.monetize(result));
+        this.lbl_amount_per_person_value.setText(this.monetize(result));
     }
 
     protected void calc_discounts_tips() {
@@ -355,7 +355,7 @@ public class MainActivity extends Activity {
         }
 
         sub_total += sub_tip;
-        sub_total -= Math.max(already_payed, 0);
+        sub_total -= Math.max(already_paid, 0);
     }
 
     protected void calc_rounding() {

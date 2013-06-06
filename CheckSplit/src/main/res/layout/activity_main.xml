@@ -157,7 +157,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:text="@string/main_discount_default_value"
-                            android:id="@+id/main_lbl_discount_display"
+                            android:id="@+id/main_lbl_discount_value"
                             android:gravity="center_vertical|right"
                             android:width="36dp"
                             android:singleLine="true"/>
@@ -213,7 +213,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:text="@string/main_tip_default_value"
-                            android:id="@+id/main_lbl_tip_display"
+                            android:id="@+id/main_lbl_tip_value"
                             android:gravity="center_vertical|right"
                             android:width="36dp"
                             android:singleLine="true"/>
@@ -300,7 +300,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/main_lbl_amount_per_person_result"
+                        android:id="@+id/main_lbl_amount_per_person_value"
                         android:layout_column="1"
                         android:textStyle="bold"
                         android:textColor="@color/main_result_text"
@@ -347,7 +347,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:text="@string/main_total_to_pay_default_value"
-                        android:id="@+id/main_lbl_total_to_pay_result"
+                        android:id="@+id/main_lbl_total_to_pay_value"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical|right"
                         android:textColor="@color/main_result_total_text"
