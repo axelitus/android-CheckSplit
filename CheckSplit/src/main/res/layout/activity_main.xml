@@ -117,6 +117,27 @@
 
                     <TextView
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Already payed:"
+                            android:id="@+id/main_lbl_already_payed"
+                            android:gravity="center_vertical|right"/>
+
+                    <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/main_txt_already_payed"
+                            android:layout_span="2"
+                            android:gravity="right"/>
+                </TableRow>
+
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:text="@string/main_person_count"
                             android:id="@+id/main_lbl_person_count"
@@ -180,6 +201,25 @@
                             android:clickable="true"
                             android:entries="@array/apply_tip_options"
                             android:layout_span="2"/>
+                </TableRow>
+
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:text="Round to:"
+                            android:id="@+id/main_lbl_round_to"
+                            android:gravity="center_vertical|right"/>
+
+                    <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/main_dpd_round_to"
+                            android:layout_span="2"
+                            android:entries="@array/round_to_options"/>
                 </TableRow>
 
             </TableLayout>
