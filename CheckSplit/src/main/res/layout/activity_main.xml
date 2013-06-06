@@ -31,7 +31,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/main_img_title_icon"
                         android:layout_column="0"
-                        android:src="@drawable/ic_launcher"/>
+                        android:src="@drawable/ic_launcher"
+                        android:contentDescription="@string/app_icon_content_description"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -79,7 +80,7 @@
                             android:id="@+id/main_txt_check_total"
                             android:layout_column="1"
                             android:gravity="right"
-                            android:hint="check total needed..."
+                            android:hint="@string/main_check_total_hint"
                             android:layout_span="4"
                             android:layout_gravity="center_vertical"
                             android:digits="0123456789."
@@ -110,14 +111,13 @@
                             android:layout_span="2"
                             android:layout_gravity="center_vertical"
                             android:digits="0123456789"
-                            android:hint="# of persons needed..."
                             android:numeric="integer"
-                            />
+                            android:hint="@string/main_person_count_hint"/>
 
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+"
+                            android:text="@string/main_person_count_btn_plus"
                             android:id="@+id/main_btn_person_plus"
                             android:layout_gravity="center_vertical"
                             android:minWidth="36dp"/>
@@ -125,7 +125,7 @@
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="-"
+                            android:text="@string/main_person_count_btn_minus"
                             android:id="@+id/main_btn_person_minus"
                             android:minWidth="36dp"/>
 
@@ -154,8 +154,8 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="0%"
-                            android:id="@+id/main_lbl_discount_symbol"
+                            android:text="@string/main_discount_default_value"
+                            android:id="@+id/main_lbl_discount_display"
                             android:gravity="center_vertical|right"
                             android:width="36dp"
                             android:singleLine="true"/>
@@ -169,7 +169,7 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Already payed:"
+                            android:text="@string/main_already_payed"
                             android:id="@+id/main_lbl_already_payed"
                             android:gravity="center_vertical|right"
                             android:layout_gravity="center_vertical"/>
@@ -183,7 +183,7 @@
                             android:layout_span="4"
                             android:gravity="right"
                             android:digits="0123456789."
-                            android:hint="$ 0.00"
+                            android:hint="@string/main_already_payed_hint"
                             android:numeric="decimal"/>
                 </TableRow>
 
@@ -210,8 +210,8 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="0%"
-                            android:id="@+id/main_lbl_tip_symbol"
+                            android:text="@string/main_tip_default_value"
+                            android:id="@+id/main_lbl_tip_display"
                             android:gravity="center_vertical|right"
                             android:width="36dp"
                             android:singleLine="true"/>
@@ -224,7 +224,7 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="Calculate tip:"
+                            android:text="@string/main_calculate_tip"
                             android:id="@+id/main_lbl_apply_tip"
                             android:gravity="center_vertical|right"
                             android:layout_gravity="center_vertical"/>
@@ -245,7 +245,7 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="Round to:"
+                            android:text="@string/main_round_to"
                             android:id="@+id/main_lbl_round_to"
                             android:gravity="center_vertical|right"
                             android:layout_gravity="center_vertical"/>
@@ -298,7 +298,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/main_lbl_result"
+                        android:id="@+id/main_lbl_amount_per_person_result"
                         android:layout_column="1"
                         android:textStyle="bold"
                         android:textColor="@color/main_result_text"
@@ -310,14 +310,15 @@
                         android:paddingRight="10dp"
                         android:paddingBottom="4dp"
                         android:layout_gravity="right"
-                        android:text="$ 0.00"/>
+                        android:text="@string/main_amount_per_person_default_value"/>
             </TableRow>
 
             <TableRow
                     android:layout_width="fill_parent"
-                    android:layout_height="1px"
-                    android:minHeight="1px"
-                    android:background="@color/main_result_line">
+                    android:layout_height="1dp"
+                    android:minHeight="1dp"
+                    android:background="@color/main_result_line"
+                    >
             </TableRow>
 
             <TableRow
@@ -327,7 +328,7 @@
                 <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:text="Total to pay:"
+                        android:text="@string/main_total_to_pay"
                         android:id="@+id/main_lbl_total_to_pay"
                         android:singleLine="true"
                         android:paddingLeft="10dp"
@@ -343,8 +344,8 @@
                 <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:text="$ 0.00"
-                        android:id="@+id/textView"
+                        android:text="@string/main_total_to_pay_default_value"
+                        android:id="@+id/main_lbl_total_to_pay_result"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical|right"
                         android:textColor="@color/main_result_total_text"
