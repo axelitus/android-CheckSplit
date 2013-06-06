@@ -18,11 +18,12 @@
     <string name="main_person_count_btn_plus">+</string>
     <string name="main_person_count_btn_minus">-</string>
     <string name="main_discount_default_value">0%</string>
-    <string name="main_already_payed">Already payed:</string>
+    <string name="main_already_payed">Already paid:</string>
     <string name="main_already_payed_hint">$ 0.00</string>
     <string name="main_tip_default_value">0%</string>
     <string name="main_calculate_tip">Calculate tip:</string>
     <string name="main_round_to">Round to:</string>
+    <string name="main_person_count_default_value">1</string>
 
     <string-array name="apply_tip_options">
         <item>before discounts</item>

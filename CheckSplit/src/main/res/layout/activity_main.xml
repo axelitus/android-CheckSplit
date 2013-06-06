@@ -112,7 +112,9 @@
                             android:layout_gravity="center_vertical"
                             android:digits="0123456789"
                             android:numeric="integer"
-                            android:hint="@string/main_person_count_hint"/>
+                            android:hint="@string/main_person_count_hint"
+                            android:text="@string/main_person_count_default_value"
+                            />
 
                     <Button
                             android:layout_width="wrap_content"
@@ -170,7 +172,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/main_already_payed"
-                            android:id="@+id/main_lbl_already_payed"
+                            android:id="@+id/main_lbl_already_paid"
                             android:gravity="center_vertical|right"
                             android:layout_gravity="center_vertical"/>
 
@@ -179,7 +181,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
                             android:ems="10"
-                            android:id="@+id/main_txt_already_payed"
+                            android:id="@+id/main_txt_already_paid"
                             android:layout_span="4"
                             android:gravity="right"
                             android:digits="0123456789."
