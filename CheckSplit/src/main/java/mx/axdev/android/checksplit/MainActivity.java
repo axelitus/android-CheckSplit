@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -17,57 +18,56 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 public class MainActivity extends Activity {
-    // check_total
-    protected EditText txt_check_total;
-    protected float check_total = 0;
-    protected boolean check_total_formatting = false;
+    // region Attributes
 
-    // discount
-    protected SeekBar skb_discount;
+    // region Widgets
+
+    // region Labels
     protected TextView lbl_discount_value;
-    protected float discount = 0;       // 0-1 percentage
-
-    // already payed
-    protected EditText txt_already_paid;
-    protected float already_paid = 0;
-    protected boolean already_paid_formatting = false;
-
-    // person_count
-    protected EditText txt_person_count;
-    protected int person_count = 0;
-
-    // tip
-    protected SeekBar skb_tip;
     protected TextView lbl_tip_value;
-    protected float tip = 0;            // 0-1 percentage
+    protected TextView lbl_amount_per_split_value;
+    protected TextView lbl_total_to_pay;
+    // endregion
 
-    // apply tip
-    protected Spinner dpd_tip;
-    protected int dpd_tip_selected = TIP_BEFORE_DISCOUNTS;
+    // region Textboxes
+    protected EditText txt_check_total;
+    protected EditText txt_split_count;
+    protected EditText txt_already_paid;
+    // endregion
 
-    // amount per person
-    protected TextView lbl_amount_per_person_value;
-    protected float sub_total = 0;
-    protected float result = 0;
+    // region Buttons
+    protected Button btn_split_count_minus;
+    protected Button btn_split_count_plus;
+    // endregion
 
-    // round to
-    protected Spinner dpd_round_to;
-    protected int dpd_round_to_selected = TIP_BEFORE_DISCOUNTS;
+    // region Seekbars
+    protected SeekBar skb_discount;
+    protected SeekBar skb_tip;
+    // endregion
 
-    // currency_formatter
-    protected DecimalFormat decimal_formatter = null;
-    protected DecimalFormat currency_formatter = null;
+    // region Spinners
+    protected Spinner dpd_calculate_tip_options;
+    protected Spinner dpd_round_to_options;
+    // endregion
 
-    // Some constants
-    public static final int TIP_BEFORE_DISCOUNTS = 0;
-    public static final int TIP_AFTER_DISCOUNTS = 1;
+    // endregion
 
-    public static final int ROUND_TO_NONE = 0;
-    public static final int ROUND_TO_ONE_UNIT = 1;
-    public static final int ROUND_TO_FIVE_UNITS = 2;
-    public static final int ROUND_TO_TEN_UNITS = 3;
+    protected Engine engine;
 
+    // region Formatters
+    protected DecimalFormat decimal_formatter;
+    protected DecimalFormat currency_formatter;
+    // endregion
 
+    // region Format Control
+    protected boolean check_total_formatting = false;
+    protected boolean split_count_formatting = false;
+    protected boolean already_paid_formatting = false;
+    // endregion
+
+    // endregion
+
+    // region Activity events
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,31 +76,46 @@ public class MainActivity extends Activity {
         this.initialize();
     }
 
-    protected void initialize() {
-        // Get activity objects to interact
-        this.init_components();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        //getMenuInflater().inflate(R.menu.main, menu);
+        //return true;
+        return false;
+    }
+    // endregion
 
-        // Setup the currency currency_formatter
+    protected void initialize() {
+        // Create the engine
+        this.engine = new Engine();
+
+        // Register the activity widgets we need to interact with
+        this.register_widgets();
+
+        // Setup the number formatters
         this.setup_formatters();
 
-        // Setup event listeners
+        // Setup widget event listeners
         this.setup_listeners();
 
-        // Run the first calculation
-        this.calculate();
+        // Display the default results
+        this.display_results();
     }
 
-    protected void init_components() {
+    protected void register_widgets() {
         this.txt_check_total = (EditText) findViewById(R.id.main_txt_check_total);
+        this.btn_split_count_minus = (Button) findViewById(R.id.main_btn_split_minus);
+        this.txt_split_count = (EditText) findViewById(R.id.main_txt_split_count);
+        this.btn_split_count_plus = (Button) findViewById(R.id.main_btn_split_plus);
         this.skb_discount = (SeekBar) findViewById(R.id.main_skb_discount);
         this.lbl_discount_value = (TextView) findViewById(R.id.main_lbl_discount_value);
         this.txt_already_paid = (EditText) findViewById(R.id.main_txt_already_paid);
-        this.txt_person_count = (EditText) findViewById(R.id.main_txt_person_count);
         this.skb_tip = (SeekBar) findViewById(R.id.main_skb_tip);
-        this.dpd_tip = (Spinner) findViewById(R.id.main_dpd_apply_tip);
         this.lbl_tip_value = (TextView) findViewById(R.id.main_lbl_tip_value);
-        this.lbl_amount_per_person_value = (TextView) findViewById(R.id.main_lbl_amount_per_person_value);
-        this.dpd_round_to = (Spinner) findViewById(R.id.main_dpd_round_to);
+        this.dpd_calculate_tip_options = (Spinner) findViewById(R.id.main_dpd_calculate_tip);
+        this.dpd_round_to_options = (Spinner) findViewById(R.id.main_dpd_round_to);
+        this.lbl_amount_per_split_value = (TextView) findViewById(R.id.main_lbl_amount_per_person_value);
+        this.lbl_total_to_pay = (TextView) findViewById(R.id.main_lbl_total_to_pay_value);
     }
 
     protected void setup_formatters() {
@@ -132,7 +147,7 @@ public class MainActivity extends Activity {
     }
 
     protected void setup_listeners() {
-        // Set event listeners for txt_check_total
+        // region txt_check_total
         this.txt_check_total.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -148,11 +163,11 @@ public class MainActivity extends Activity {
             public void afterTextChanged(Editable editable) {
                 if(!check_total_formatting) {
                     try {
-                        check_total = Float.parseFloat(editable.toString());
+                        engine.setCheckTotal(Float.parseFloat(editable.toString()));
                     } catch(Exception ex) {
-                        check_total = 0;
+                        engine.setCheckTotal(0);
                     }
-                    calculate();
+                    display_results();
                 }
 
                 check_total_formatting = false;
@@ -163,29 +178,80 @@ public class MainActivity extends Activity {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 check_total_formatting = true;
+                DecimalFormat formatter;
                 if(hasFocus) {
-                    if(check_total > 0) {
-                        txt_check_total.setText(decimal_formatter.format(check_total));
-                    } else {
-                        txt_check_total.setText("");
-                    }
+                    formatter = decimal_formatter;
                 } else {
-                    if(check_total > 0) {
-                        txt_check_total.setText(currency_formatter.format(check_total));
-                    } else {
-                        txt_check_total.setText("");
-                    }
+                    formatter = currency_formatter;
                 }
+
+                txt_check_total.setText(((engine.getCheckTotal() > 0)? formatter.format(engine.getCheckTotal()) : "" ));
             }
         });
+        // endregion
 
-        // Set event listeners for skb_discount
+        // region txt_split_count
+        this.txt_split_count.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!split_count_formatting) {
+                    try {
+                        engine.setSplitCount(Integer.parseInt(editable.toString()));
+                    } catch (Exception ex) {
+                        engine.setSplitCount(0);
+                    }
+
+                    display_results();
+                }
+
+                split_count_formatting = false;
+            }
+        });
+        // endregion
+
+        // region btn_split_count_minus
+        this.btn_split_count_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                engine.splitCountDecrease();
+                split_count_formatting = true;
+                txt_split_count.setText(Integer.toString(engine.getSplitCount()));
+
+                display_results();
+            }
+        });
+        // endregion
+
+        // region btn_split_count_plus
+        this.btn_split_count_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                engine.splitCountIncrease();
+                split_count_formatting = true;
+                txt_split_count.setText(Integer.toString(engine.getSplitCount()));
+
+                display_results();
+            }
+        });
+        // endregion
+
+        // region skb_discount
         this.skb_discount.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                engine.setDiscountPercent(i / 100f);
                 lbl_discount_value.setText(Integer.toString(i) + "%");
-                discount = i / 100f;
-                calculate();
+                display_results();
             }
 
             @Override
@@ -198,8 +264,9 @@ public class MainActivity extends Activity {
 
             }
         });
+        // endregion
 
-        // Set event listeners for txt_already_paid
+        // region txt_already_paid
         this.txt_already_paid.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -215,11 +282,12 @@ public class MainActivity extends Activity {
             public void afterTextChanged(Editable editable) {
                 if(!already_paid_formatting) {
                     try {
-                        already_paid = Float.parseFloat(editable.toString());
+                        engine.setAlreadyPaid(Float.parseFloat(editable.toString()));
                     } catch(Exception ex) {
-                        already_paid = 0;
+                        engine.setAlreadyPaid(0);
                     }
-                    calculate();
+
+                    display_results();
                 }
 
                 already_paid_formatting = false;
@@ -230,52 +298,25 @@ public class MainActivity extends Activity {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 already_paid_formatting = true;
-                if (hasFocus) {
-                    if (already_paid > 0) {
-                        txt_already_paid.setText(decimal_formatter.format(already_paid));
-                    } else {
-                        txt_already_paid.setText("");
-                    }
+                DecimalFormat formatter;
+                if(hasFocus) {
+                    formatter = decimal_formatter;
                 } else {
-                    if (check_total > 0) {
-                        txt_already_paid.setText(currency_formatter.format(already_paid));
-                    } else {
-                        txt_already_paid.setText("");
-                    }
+                    formatter = currency_formatter;
                 }
+
+                txt_already_paid.setText(((engine.getAlreadyPaid() > 0)? formatter.format(engine.getAlreadyPaid()) : "" ));
             }
         });
+        // endregion
 
-        // Set event listeners for txt_person_count
-        this.txt_person_count.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                try {
-                    person_count = Integer.parseInt(editable.toString());
-                } catch(Exception ex) {
-                    person_count = 0;
-                }
-                calculate();
-            }
-        });
-
-        // Set event listeners for skb_tip
+        // region for skb_tip
         this.skb_tip.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                engine.setTipPercent(i / 100f);
                 lbl_tip_value.setText(Integer.toString(i) + "%");
-                tip = i / 100f;
-                calculate();
+                display_results();
             }
 
             @Override
@@ -288,13 +329,14 @@ public class MainActivity extends Activity {
 
             }
         });
+        // endregion
 
-        // Set event listeners for dpd_tip
-        this.dpd_tip.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        // region dpd_calculate_tip_options
+        this.dpd_calculate_tip_options.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                dpd_tip_selected = position;
-                calculate();
+                engine.setCalculateTipOption(Engine.CalculateTipOptions.fromInteger(position));
+                display_results();
             }
 
             @Override
@@ -302,13 +344,14 @@ public class MainActivity extends Activity {
 
             }
         });
+        // endregion
 
-        // Set event listeners for dpd_round_to
-        this.dpd_round_to.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        // region dpd_round_to_options
+        this.dpd_round_to_options.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                dpd_round_to_selected = position;
-                calculate();
+                engine.setRoundToOption(Engine.RoundToOptions.fromInteger(position));
+                display_results();
             }
 
             @Override
@@ -316,63 +359,12 @@ public class MainActivity extends Activity {
 
             }
         });
+        // endregion
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.main, menu);
-        //return true;
-        return false;
-    }
-
-    protected void calculate() {
-        this.calc_discounts_tips();
-
-        result = 0;
-        if(person_count > 0) {
-            result = sub_total / person_count;
-        }
-
-        this.calc_rounding();
-
-        this.lbl_amount_per_person_value.setText(this.monetize(result));
-    }
-
-    protected void calc_discounts_tips() {
-        float sub_discount;
-        float sub_tip = 0;
-
-        sub_discount = check_total * discount;
-        sub_total = check_total - sub_discount;
-        switch (this.dpd_tip_selected) {
-            case TIP_BEFORE_DISCOUNTS:
-                sub_tip = check_total * tip;
-                break;
-            case TIP_AFTER_DISCOUNTS:
-                sub_tip = sub_total * tip;
-                break;
-        }
-
-        sub_total += sub_tip;
-        sub_total -= Math.max(already_paid, 0);
-    }
-
-    protected void calc_rounding() {
-        switch(this.dpd_round_to_selected) {
-            case ROUND_TO_NONE:
-                // do nothing
-                break;
-            case ROUND_TO_ONE_UNIT:
-                result = (float) Math.ceil(result);
-                break;
-            case ROUND_TO_FIVE_UNITS:
-                result = (float) Math.ceil(result / 5) * 5;
-                break;
-            case ROUND_TO_TEN_UNITS:
-                result = (float) Math.ceil(result / 10) * 10;
-                break;
-        }
+    protected void display_results() {
+        this.lbl_amount_per_split_value.setText(this.monetize(engine.getAmountPerSplit()));
+        this.lbl_total_to_pay.setText(this.monetize(engine.getTotalToPay()));
     }
 
     protected String monetize(float result) {
