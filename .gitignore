@@ -1,4 +1,6 @@
 .idea
 .gradle
+CheckSplitProject.iml
+CheckSplit/CheckSplit.iml
 CheckSplit/build
 CheckSplit/CheckSplit.apk
