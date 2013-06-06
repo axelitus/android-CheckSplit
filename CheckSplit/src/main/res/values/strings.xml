@@ -26,8 +26,9 @@
     <string name="main_split_count_default_value">1</string>
 
     <string-array name="calculate_tip_options">
-        <item>before discounts</item>
-        <item>after discounts</item>
+        <item>before discount</item>
+        <item>after discount</item>
+        <item>after discount and already paid</item>
     </string-array>
 
     <string-array name="round_to_options">
