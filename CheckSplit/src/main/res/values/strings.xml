@@ -24,6 +24,7 @@
     <string name="main_calculate_tip">Calculate tip:</string>
     <string name="main_round_to">Round to:</string>
     <string name="main_split_count_default_value">1</string>
+    <string name="main_reset">Reset</string>
 
     <string-array name="calculate_tip_options">
         <item>before discount</item>

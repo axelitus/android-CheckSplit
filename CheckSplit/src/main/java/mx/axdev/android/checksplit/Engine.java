@@ -161,6 +161,19 @@ public class Engine {
     // endregion
 
     // region Methods
+    public void reset() {
+        this.check_total = 0;
+        this.split_count = 1;
+        this.discount_percent = 0;
+        this.already_paid = 0;
+        this.tip_percent = 0;
+        this.calculate_tip_option = CalculateTipOptions.BEFORE_DISCOUNT;
+        this.round_to_option = RoundToOptions.NONE;
+
+        this.amount_per_split = 0;
+        this.total_to_pay = 0;
+    }
+
     public void splitCountIncrease() {
         this.split_count = Math.min(this.split_count + 1, Integer.MAX_VALUE);
         this.calculate();

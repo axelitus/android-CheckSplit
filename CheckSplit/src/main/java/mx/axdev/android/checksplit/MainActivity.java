@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
     // endregion
 
     // region Buttons
+    protected Button btn_reset;
     protected Button btn_split_count_minus;
     protected Button btn_split_count_plus;
     // endregion
@@ -103,6 +104,7 @@ public class MainActivity extends Activity {
     }
 
     protected void register_widgets() {
+        this.btn_reset = (Button) findViewById(R.id.main_btn_reset);
         this.txt_check_total = (EditText) findViewById(R.id.main_txt_check_total);
         this.btn_split_count_minus = (Button) findViewById(R.id.main_btn_split_minus);
         this.txt_split_count = (EditText) findViewById(R.id.main_txt_split_count);
@@ -147,6 +149,18 @@ public class MainActivity extends Activity {
     }
 
     protected void setup_listeners() {
+        // region btn_reset
+        this.btn_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                engine.reset();
+                display_results();
+
+                // ToDo: set the widgets to the value of the engine
+            }
+        });
+        // endregion
+
         // region txt_check_total
         this.txt_check_total.addTextChangedListener(new TextWatcher() {
             @Override
