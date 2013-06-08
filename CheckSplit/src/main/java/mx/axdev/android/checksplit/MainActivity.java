@@ -237,6 +237,17 @@ public class MainActivity extends Activity {
                 split_count_formatting = false;
             }
         });
+
+        this.txt_split_count.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if(!hasFocus) {
+                    if(txt_split_count.getText().length() == 0) {
+                        txt_split_count.setText(Integer.toString(engine.getSplitCount()));
+                    }
+                }
+            }
+        });
         // endregion
 
         // region btn_split_count_minus
