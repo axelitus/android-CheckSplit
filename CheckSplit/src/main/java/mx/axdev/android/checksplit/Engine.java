@@ -208,7 +208,7 @@ public class Engine {
     }
 
     public void splitCountDecrease() {
-        this.split_count = Math.max(this.split_count - 1, 0);
+        this.split_count = Math.max(this.split_count - 1, 1);
         this.calculate();
     }
 

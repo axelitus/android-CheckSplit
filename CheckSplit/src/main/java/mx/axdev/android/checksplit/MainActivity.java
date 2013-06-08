@@ -224,8 +224,11 @@ public class MainActivity extends Activity {
                 if(!split_count_formatting) {
                     try {
                         engine.setSplitCount(Integer.parseInt(editable.toString()));
+
+                        split_count_formatting = true;
+                        editable.replace(0, editable.length(), Integer.toString(engine.getSplitCount()));
                     } catch (Exception ex) {
-                        engine.setSplitCount(0);
+                        engine.setSplitCount(1);
                     }
 
                     display_results();
