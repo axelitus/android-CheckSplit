@@ -95,7 +95,7 @@
                             android:layout_gravity="center_vertical"
                             android:digits="0123456789."
                             android:numeric="decimal"
-                            android:textColorHint="@color/textbox_hint_color"/>
+                            android:singleLine="true"/>
                 </TableRow>
 
                 <TableRow
@@ -134,7 +134,8 @@
                             android:numeric="integer"
                             android:hint="@string/main_split_count_hint"
                             android:text="@string/main_split_count_default_value"
-                            android:layout_span="2"/>
+                            android:layout_span="2"
+                            android:singleLine="true"/>
 
                     <Button
                             android:layout_width="wrap_content"
@@ -201,7 +202,7 @@
                             android:digits="0123456789."
                             android:hint="@string/main_already_paid_hint"
                             android:numeric="decimal"
-                            android:textColorHint="@color/textbox_hint_color"/>
+                            android:singleLine="true"/>
                 </TableRow>
 
                 <TableRow

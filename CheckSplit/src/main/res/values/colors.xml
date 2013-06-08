@@ -2,7 +2,6 @@
 <resources>
     <color name="app_background">#ffd2cdd3</color>
     <color name="text_color">#f333</color>
-    <color name="textbox_hint_color">#ffdfdfdf</color>
 
     <color name="main_title_text">#ffe0e0e0</color>
     <color name="main_amount_per_split_text">#ffe0e0e0</color>
