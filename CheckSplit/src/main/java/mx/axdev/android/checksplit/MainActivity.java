@@ -155,8 +155,10 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 engine.reset();
 
+                // Reset the widgets
                 reset_widgets_from_engine();
 
+                // Display the new result
                 display_results();
             }
         });
