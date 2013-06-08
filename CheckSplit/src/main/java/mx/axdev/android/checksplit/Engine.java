@@ -23,6 +23,19 @@ public class Engine {
         AFTER_DISCOUNT,
         AFTER_DISCOUNT_AND_ALREADY_PAID;
 
+        public static int toInteger(CalculateTipOptions option) {
+            switch(option) {
+                case BEFORE_DISCOUNT:
+                    return 0;
+                case AFTER_DISCOUNT:
+                    return 1;
+                case AFTER_DISCOUNT_AND_ALREADY_PAID:
+                    return 2;
+            }
+
+            return -1;
+        }
+
         public static CalculateTipOptions fromInteger(int i) {
             switch(i) {
                 case 0:
@@ -42,6 +55,21 @@ public class Engine {
         ONE_UNIT,
         FIVE_UNITS,
         TEN_UNITS;
+
+        public static int toInteger(RoundToOptions option) {
+            switch(option) {
+                case NONE:
+                    return 0;
+                case ONE_UNIT:
+                    return 1;
+                case FIVE_UNITS:
+                    return 2;
+                case TEN_UNITS:
+                    return 3;
+            }
+
+            return -1;
+        }
 
         public static RoundToOptions fromInteger(int i) {
             switch(i) {

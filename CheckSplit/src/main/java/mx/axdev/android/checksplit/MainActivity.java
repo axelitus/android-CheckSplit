@@ -154,9 +154,10 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 engine.reset();
-                display_results();
 
-                // ToDo: set the widgets to the value of the engine
+                reset_widgets_from_engine();
+
+                display_results();
             }
         });
         // endregion
@@ -373,6 +374,24 @@ public class MainActivity extends Activity {
 
             }
         });
+        // endregion
+    }
+
+    protected void reset_widgets_from_engine() {
+        // region Textboxes
+        this.txt_check_total.setText(Float.toString(this.engine.getCheckTotal()));
+        this.txt_split_count.setText(Integer.toString(this.engine.getSplitCount()));
+        this.txt_already_paid.setText(Float.toString(this.engine.getAlreadyPaid()));
+        // endregion
+
+        // region Seekbars
+        this.skb_discount.setProgress((int) this.engine.getDiscountPercent() * 100);
+        this.skb_tip.setProgress((int) this.engine.getTipPercent() * 100);
+        // endregion
+
+        // region Spinners
+        this.dpd_calculate_tip_options.setSelection(Engine.CalculateTipOptions.toInteger(this.engine.getCalculateTipOption()));
+        this.dpd_round_to_options.setSelection(Engine.RoundToOptions.toInteger(this.engine.getRoundToOption()));
         // endregion
     }
 
