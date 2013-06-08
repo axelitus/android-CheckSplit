@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" >Check Split</string>
+    <string name="app_icon_content_description">ícono de aplicación</string>
+    <string name="action_settings" >Ajustes</string>
+
+    <string name="main_amount_per_split" >Cantidad por parte:</string>
+    <string name="main_check_total" >Total cuenta:</string>
+    <string name="main_check_total_hint">$ 0.00</string>
+    <string name="main_split_count" ># de partes:</string>
+    <string name="main_split_count_hint">cantidad partes</string>
+    <string name="main_discount">Descuento:</string>
+    <string name="main_tip">Propina:</string>
+    <string name="main_amount_per_split_default_value">$ 0.00</string>
+    <string name="main_total_to_pay">Total a pagar:</string>
+    <string name="main_total_to_pay_default_value">$ 0.00</string>
+    <string name="main_split_count_btn_plus">+</string>
+    <string name="main_split_count_btn_minus">-</string>
+    <string name="main_discount_default_value">0%</string>
+    <string name="main_already_paid">Ya pagado:</string>
+    <string name="main_already_paid_hint">$ 0.00</string>
+    <string name="main_tip_default_value">0%</string>
+    <string name="main_calculate_tip">Calcular propina:</string>
+    <string name="main_round_to">Redondear a:</string>
+    <string name="main_split_count_default_value">1</string>
+    <string name="main_reset">Borrar</string>
+
+    <string-array name="calculate_tip_options">
+        <item>antes de descuento</item>
+        <item>después de descuento</item>
+        <item>después de descuento y ya pagado</item>
+    </string-array>
+
+    <string-array name="round_to_options">
+        <item>ninguno</item>
+        <item>una unidad</item>
+        <item>cinco unidades</item>
+        <item>diez unidades</item>
+    </string-array>
+</resources>
