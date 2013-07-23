@@ -1,5 +1,6 @@
 .idea
 .gradle
+local.properties
 CheckSplitProject.iml
 CheckSplit/CheckSplit.iml
 CheckSplit/build
